@@ -16,7 +16,7 @@ const ModuleName = capitalize(moduleName);
 
 // Define paths
 const moduleDir = path.join(__dirname, "src", "modules", moduleName);
-const folders = ["components", "hooks", "lib", "services", "states", "utils"];
+const folders = ["components", "hooks", "pages", "services", "states", "utils"];
 
 // Create module directories
 folders.forEach((folder) => {
@@ -49,6 +49,22 @@ fs.writeFileSync(
   hookContent
 );
 
+// Routes file
+const routesContent = `import React from "react";
+import { RouteObject } from "react-router-dom";
+import ${ModuleName}Component from "../components/${ModuleName}Component";
+
+const ${ModuleName}Routes: RouteObject[] = [
+  {
+    path: "${moduleName}",
+    element: <${ModuleName}Component />,
+  },
+];
+
+export default ${ModuleName}Routes;`;
+
+fs.writeFileSync(path.join(moduleDir, "routes.tsx"), routesContent);
+
 console.log(
-  `✅ Module '${moduleName}' created successfully in 'src/modules/${moduleName}'`
+  `✅ Module '${moduleName}' created successfully in 'src/modules/${moduleName}' with routes.tsx`
 );
