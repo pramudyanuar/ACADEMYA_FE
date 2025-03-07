@@ -1,54 +1,79 @@
-# React + TypeScript + Vite
+# Academya Client - Vite + React + TypeScript + SWC
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Academya Client adalah proyek frontend berbasis **Vite + React + TypeScript**, yang dioptimalkan menggunakan **SWC** untuk performa lebih cepat. Aplikasi ini dapat dijalankan dalam lingkungan Docker menggunakan **Nginx** sebagai web server.
 
-Currently, two official plugins are available:
+## 📦 Struktur Proyek
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+Academya_Client/
+├── public/                 # Static files
+├── src/                    # Source code
+├── .gitignore              # Git ignore file
+├── createModule.cjs        # Script untuk membuat module baru
+├── eslint.config.js        # ESLint configuration
+├── index.html              # Root HTML file
+├── package.json            # Dependencies dan script
+├── tsconfig.json           # TypeScript configuration
+├── vite.config.ts          # Vite configuration
+├── Dockerfile              # Docker configuration
+├── nginx.conf              # Nginx configuration
+└── README.md               # Dokumentasi ini
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Menjalankan dengan Docker
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### **1️⃣ Build Docker Image**
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+Jalankan perintah berikut untuk membangun image:
+
+```sh
+docker build -t academya-client .
 ```
+
+### **2️⃣ Jalankan Container**
+
+Gunakan perintah ini untuk menjalankan container di port 3000:
+
+```sh
+docker run -d -p 3000:80 academya-client
+```
+
+### **3️⃣ Akses Aplikasi**
+
+Buka browser dan akses:
+
+```
+http://localhost:3000
+```
+
+## 🔧 Konfigurasi Custom Nginx (Opsional)
+
+File `nginx.conf` telah disiapkan untuk menangani routing **React Router SPA**. Jika ingin mengedit konfigurasi, ubah file `nginx.conf` sebelum membangun ulang image.
+
+## 🛑 Menghentikan Container
+
+Untuk menghentikan container yang berjalan, jalankan:
+
+```sh
+docker ps          # Cek ID container
+```
+
+```sh
+docker stop <container_id>
+```
+
+## 🗑️ Menghapus Container dan Image
+
+Jika perlu menghapus container dan image, gunakan perintah berikut:
+
+```sh
+docker rm $(docker ps -aq)       # Hapus semua container
+```
+
+```sh
+docker rmi academya-client       # Hapus image
+```
+
+## 📜 Lisensi
+
+Proyek ini menggunakan lisensi **MIT**.
