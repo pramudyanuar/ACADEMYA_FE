@@ -3,7 +3,7 @@
 Academya Client adalah proyek frontend berbasis **Vite + React + TypeScript**, yang dioptimalkan menggunakan **SWC** untuk performa lebih cepat. Aplikasi ini dapat dijalankan dalam lingkungan Docker menggunakan **Nginx** sebagai web server.
 
 ## 📜 Dokumentasi
-[text](https://docs.google.com/document/d/1hSjSAFbm3fzuq9-JRc9YCVSgDdo-VNoZOJB5eFAolhM/edit?usp=sharing)
+[DOKUMENTASI](https://docs.google.com/document/d/1hSjSAFbm3fzuq9-JRc9YCVSgDdo-VNoZOJB5eFAolhM/edit?usp=sharing)
 
 ## 📦 Struktur Proyek
 
