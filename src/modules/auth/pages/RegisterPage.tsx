@@ -1,15 +1,24 @@
-import useLogin from "../hooks/useLogin";
+import useRegister from "../hooks/useRegister";
 
-const LoginPage = () => {
-  const { email, setEmail, password, setPassword, handleLogin, goToRegister, goToForgotPassword } = useLogin();
+const RegisterPage = () => {
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    confirmPassword,
+    setConfirmPassword,
+    handleRegister,
+    goToLogin,
+  } = useRegister();
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100 dark:bg-gray-900">
       <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md w-96">
         <h2 className="text-2xl font-bold mb-4 text-center text-gray-900 dark:text-white">
-          Login
+          Register
         </h2>
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleRegister}>
           <div className="mb-4">
             <label className="block text-gray-700 dark:text-gray-300">Email</label>
             <input
@@ -20,36 +29,40 @@ const LoginPage = () => {
               required
             />
           </div>
-          <div className="mb-4 flex justify-between items-center">
+          <div className="mb-4">
             <label className="block text-gray-700 dark:text-gray-300">Password</label>
-            <span
-              onClick={goToForgotPassword}
-              className="text-blue-500 dark:text-blue-400 hover:underline cursor-pointer text-sm"
-            >
-              Forgot Your Password?
-            </span>
+            <input
+              type="password"
+              className="w-full p-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded mt-1"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
           </div>
-          <input
-            type="password"
-            className="w-full p-2 mb-5 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded mt-1"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <div className="mb-4">
+            <label className="block text-gray-700 dark:text-gray-300">Confirm Password</label>
+            <input
+              type="password"
+              className="w-full p-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded mt-1"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </div>
           <button
             type="submit"
             className="w-full bg-blue-500 dark:bg-blue-600 text-white p-2 rounded hover:bg-blue-600 dark:hover:bg-blue-700"
           >
-            Login
+            Register
           </button>
         </form>
         <p className="text-center text-gray-600 dark:text-gray-400 mt-4">
-          Don't have an account?{" "}
+          Already have an account?{" "}
           <span
-            onClick={goToRegister}
+            onClick={goToLogin}
             className="text-blue-500 dark:text-blue-400 hover:underline cursor-pointer"
           >
-            Register
+            Login
           </span>
         </p>
       </div>
@@ -57,4 +70,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
