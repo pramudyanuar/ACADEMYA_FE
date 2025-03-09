@@ -11,7 +11,7 @@ const useLogin = () => {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (email === "user@example.com" && password === "password") {
-      navigate("/dashboard");
+      navigate(NavigationRoutes.FEEDS);
     } else {
       alert("Invalid credentials");
     }
