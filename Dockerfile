@@ -1,37 +1,37 @@
-# Stage 1: Build
-FROM node:18-alpine AS builder
+# ======= STAGE 1: Build =======
+FROM node:20 AS builder
 
+# Set working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy package.json and package-lock.json first (for efficient caching)
 COPY package.json package-lock.json ./
 
-# Install dependencies
-RUN npm install --frozen-lockfile
+# Enable Corepack to prevent the "Text file busy" error
+RUN corepack enable && npm ci --no-audit --no-fund
 
-# Copy the entire project
+# Copy the entire project (after dependencies are installed)
 COPY . .
 
 # Build the project
 RUN npm run build
 
-# Stage 2: Serve with Nginx
-FROM nginx:alpine
 
-# Set working directory
-WORKDIR /usr/share/nginx/html
+# ======= STAGE 2: Production =======
+FROM node:20-alpine AS runner
 
-# Remove default nginx static files
-RUN rm -rf ./*
+WORKDIR /app
 
-# Copy built files from builder stage
-COPY --from=builder /app/dist ./
+# Copy only the built files and necessary dependencies from the builder stage
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/package.json ./
 
-# Copy custom Nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Set environment variable for production
+ENV NODE_ENV=production
 
-# Expose port 80
-EXPOSE 80
+# Expose the port your app runs on
+EXPOSE 3000
 
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start the application
+CMD ["node", "dist/index.js"]
