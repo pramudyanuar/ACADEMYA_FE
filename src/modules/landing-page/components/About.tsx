@@ -23,7 +23,7 @@ const AboutSection = () => {
         {/* IMAGE */}
         <div className="flex justify-center">
           <img
-            src="/src/assets/pc-about.png"
+            src="/src/assets/pc-about.webp"
             alt="Job seeker"
             className="w-80 h-80"
           />

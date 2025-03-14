@@ -4,7 +4,7 @@ const Hero: React.FC = () => {
   return (
     <div 
       className="relative w-full h-screen bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/src/assets/bg-landing-page.png')" }}
+      style={{ backgroundImage: "url('/src/assets/bg-landing-page.webp')" }}
     >
       {/* Hero content */}
       <div className="relative w-full h-full flex flex-col justify-center items-center text-center px-4">
