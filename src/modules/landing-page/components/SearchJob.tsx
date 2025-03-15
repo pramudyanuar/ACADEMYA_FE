@@ -1,50 +1,55 @@
-import { FaMapMarkerAlt, FaBriefcase } from "react-icons/fa";
-import { IoArrowForward } from "react-icons/io5";
+import ButtonSearchJob from "../../core/design-system/ButtonSearchJob";
+import {
+  LocationField,
+  SearchPositionField,
+  WorkTypeField,
+} from "../../core/design-system/TextFieldSearchJob";
+import useSearchJob from "../hooks/useSearchJob";
 
 const JobSearchSection = () => {
-  return (
-    <div className="bg-gray-100 py-12 px-6 flex justify-center border-b border-gray-300">
-      <div className="max-w-4xl w-full">
-        <h2 className="text-2xl font-bold text-black">FIND YOUR JOBS</h2>
-        <p className="text-gray-600 mb-6">FIND THE JOB THAT BEST SUITS YOU</p>
+  const {
+    searchValue,
+    setSearchValue,
+    locationValue,
+    setLocationValue,
+    workTypeValue,
+    setWorkTypeValue,
+    handleSubmit,
+  } = useSearchJob();
 
-        <div className="flex items-center gap-4">
-          <IoArrowForward className="text-blue-500 text-2xl" />
-          <div className="flex-1">
-            <input
-              type="text"
-              placeholder="Search Position"
-              className="border rounded-full px-4 py-2 w-full"
+  return (
+    <section id="search-job">
+      <div className="bg-gray-100 min-h-screen flex justify-center items-center px-6 border-b border-gray-300">
+        <div className="max-w-4xl w-full rounded-lg p-8">
+          <h2 className="text-2xl font-bold text-black text-center">FIND YOUR JOBS</h2>
+          <p className="text-gray-600 text-center mb-6">FIND THE JOB THAT BEST SUITS YOU</p>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <SearchPositionField
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
             />
-            <div className="flex flex-col md:flex-row gap-4 mt-4">
-              <div className="relative w-full md:w-1/2">
-                <FaMapMarkerAlt className="absolute left-3 top-3 text-gray-500" />
-                <input
-                  type="text"
-                  placeholder="Type Location"
-                  className="border rounded-full pl-10 py-2 w-full"
+
+            <div className="flex gap-4 w-full">
+              <div className="w-1/2">
+                <LocationField
+                  value={locationValue}
+                  onChange={(e) => setLocationValue(e.target.value)}
                 />
               </div>
-              <div className="relative w-full md:w-1/2">
-                <FaBriefcase className="absolute left-3 top-3 text-gray-500" />
-                <select className="border rounded-full pl-10 py-2 w-full">
-                  <option>Work Type</option>
-                  <option>Full-Time</option>
-                  <option>Part-Time</option>
-                  <option>Remote</option>
-                </select>
+              <div className="w-1/2">
+                <WorkTypeField
+                  value={workTypeValue}
+                  onChange={(e) => setWorkTypeValue(e.target.value)}
+                />
               </div>
             </div>
-          </div>
-        </div>
-
-        <div className="flex justify-end mt-4">
-          <button className="bg-gradient-to-r from-blue-500 to-blue-900 text-white font-bold px-6 py-2 rounded-full flex items-center gap-2 shadow-lg">
-            SEARCH JOB <IoArrowForward />
-          </button>
+            <div className="flex justify-center">
+              <ButtonSearchJob type="submit">Search Job →</ButtonSearchJob>
+            </div>
+          </form>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

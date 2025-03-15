@@ -1,4 +1,5 @@
 import AboutSection from "../components/About";
+import BackToTop from "../components/BackToTop";
 import CareerSection from "../components/Career";
 import Features from "../components/Features";
 import Footer from "../components/Footer";
@@ -16,6 +17,7 @@ const LandingPage = () => {
       <JobSearchSection />
       <CareerSection />
       <Footer />
+      <BackToTop />
     </div>
   );
 };

@@ -1,3 +1,5 @@
+import Button from "../../core/design-system/Button";
+import TextField from "../../core/design-system/TextField";
 import useRegister from "../hooks/useRegister";
 
 const RegisterPage = () => {
@@ -30,48 +32,40 @@ const RegisterPage = () => {
         
         <form onSubmit={handleRegister} className="w-full max-w-sm">
           {/* Full Name */}
-          <label className="block text-gray-700 mb-1">Full Name</label>
-          <input 
-            type="text" 
-            value={fullName} 
+          <TextField
+            label="Full Name"
+            value={fullName}
             onChange={(e) => setFullName(e.target.value)}
-            className="w-full p-2 border rounded mb-4" 
           />
 
           {/* Email */}
-          <label className="block text-gray-700 mb-1">Email</label>
-          <input 
-            type="email" 
-            value={email} 
+          <TextField
+            label="Email"
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-2 border rounded mb-4" 
           />
 
           {/* Phone Number */}
-          <label className="block text-gray-700 mb-1">Phone Number</label>
-          <input 
-            type="tel" 
-            value={phoneNumber} 
+          <TextField
+            label="Phone Number"
+            value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            className="w-full p-2 border rounded mb-4" 
           />
 
           {/* Password */}
-          <label className="block text-gray-700 mb-1">Password</label>
-          <input 
-            type="password" 
-            value={password} 
+          <TextField
+            label="Password"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-2 border rounded mb-4" 
+            isPassword={true}
           />
 
           {/* Confirm Password */}
-          <label className="block text-gray-700 mb-1">Confirm Password</label>
-          <input 
-            type="password" 
-            value={confirmPassword} 
+          <TextField
+            label="Confirm Password"
+            value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className="w-full p-2 border rounded mb-4" 
+            isPassword={true}
           />
 
           {/* Role Selection */}
@@ -118,9 +112,7 @@ const RegisterPage = () => {
           </div>
 
           {/* Register Button */}
-          <button type="submit" className="w-full bg-blue-700 text-white py-2 rounded">
-            CREATE YOUR ACCOUNT
-          </button>
+          <Button onClick={handleRegister} className="w-full bg-blue-700 text-white py-2 rounded">CREATE YOUR ACCOUNT</Button>
         </form>
 
         <p className="mt-4 text-sm">

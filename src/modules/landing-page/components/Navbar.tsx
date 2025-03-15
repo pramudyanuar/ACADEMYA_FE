@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import useNavbar from '../hooks/useNavbar';
 
 const Navbar: React.FC = () => {
@@ -31,15 +32,15 @@ const Navbar: React.FC = () => {
                 Home
               </a>
               <a 
-                href="#" 
+                href="#features" 
                 className={`px-3 py-2 rounded-md font-medium ${
                   isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-gray-200'
                 }`}
               >
-                Job Vacancy
+                Features
               </a>
               <a 
-                href="#" 
+                href="#about" 
                 className={`px-3 py-2 rounded-md font-medium ${
                   isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-gray-200'
                 }`}
@@ -47,12 +48,12 @@ const Navbar: React.FC = () => {
                 About Us
               </a>
               <a 
-                href="#" 
+                href="#search-job" 
                 className={`px-3 py-2 rounded-md font-medium ${
                   isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-gray-200'
                 }`}
               >
-                Contact
+                Careers
               </a>
             </div>
           </div>
@@ -98,20 +99,25 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile menu, toggle based on state */}
-      <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden bg-opacity-95`}>
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }} 
+        animate={{ opacity: isMenuOpen ? 1 : 0, y: isMenuOpen ? 0 : -20 }} 
+        transition={{ duration: 0.3 }}
+        className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden bg-opacity-95`}
+      >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <a href="#" className="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Home</a>
-          <a href="#" className="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Job Vacancy</a>
-          <a href="#career" className="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">About Us</a>
-          <a href="#" className="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Contact</a>
+          <a href="#" className={`${ isScrolled ? 'text-gray-700' : 'text-white'} block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700`}>Home</a>
+          <a href="#features" className={`${ isScrolled ? 'text-gray-700' : 'text-white'}  block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700`}>Features</a>
+          <a href="#about" className={`${ isScrolled ? 'text-gray-700' : 'text-white'}  block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700`}>About Us</a>
+          <a href="#search-job" className={`${ isScrolled ? 'text-gray-700' : 'text-white'}  block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700`}>Careers</a>
         </div>
         <div className="pt-4 pb-3 border-t border-white border-opacity-25">
           <div className="flex items-center justify-center space-x-4 px-5">
-            <a href="#" className="text-white hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium block w-full text-center">Login</a>
-            <a href="#" className="bg-white text-blue-600 px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 block w-full text-center">Sign Up</a>
+            <button className="text-white bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded-md text-base font-medium w-full" onClick={goToLogin}>Login</button>
+            <button className="text-blue-900 bg-white hover:bg-gray-200 px-3 py-2 rounded-md text-base font-medium w-full" onClick={goToRegister}>Sign Up</button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </nav>
   );
 };
