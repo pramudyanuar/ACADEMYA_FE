@@ -9,7 +9,7 @@ interface ButtonSearchJobProps {
 
 export const ButtonSearchJob: React.FC<ButtonSearchJobProps> = ({
   onClick,
-  children = "SEARCH JOB", // Default text
+  children = "SEARCH JOB",
   type = "button",
   className = "",
 }) => {
@@ -25,6 +25,3 @@ export const ButtonSearchJob: React.FC<ButtonSearchJobProps> = ({
 };
 
 export default ButtonSearchJob;
-
-//contoh cara pakainya
-// <ButtonSearchJob>SEARCH JOB</ButtonSearchJob>

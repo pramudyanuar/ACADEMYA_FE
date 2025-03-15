@@ -1,3 +1,5 @@
+import Button from "../../core/design-system/Button";
+import TextField from "../../core/design-system/TextField";
 import useLogin from "../hooks/useLogin";
 
 const LoginPage = () => {
@@ -21,20 +23,17 @@ const LoginPage = () => {
           <p className="text-gray-600 mb-6 text-center">Sign up to get started with Jobs!</p>
           
           <form onSubmit={handleLogin} className="w-full">
-            <label className="block text-gray-700 mb-2">Email</label>
-            <input 
-              type="email" 
-              value={email} 
+            <TextField
+              label="Email"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-2 border rounded mb-4" 
             />
 
-            <label className="block text-gray-700 mb-2">Password</label>
-            <input 
-              type="password" 
-              value={password} 
+            <TextField
+              label="Password"
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-2 border rounded mb-4" 
+              isPassword={true}
             />
             
             <div className="flex justify-between items-center text-sm mb-4">
@@ -44,7 +43,7 @@ const LoginPage = () => {
               </label>
             </div>
             
-            <button type="submit" className="w-full bg-blue-700 text-white py-2 rounded">LOGIN</button>
+            <Button onClick={handleLogin} className="w-full bg-blue-700 text-white py-2 rounded">LOGIN</Button>
           </form>
           
           <p className="mt-4 text-sm text-center">Don't have an account? <button onClick={goToRegister} className="text-blue-500">Sign Up</button></p>
