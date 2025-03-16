@@ -1,45 +1,55 @@
-const posts = [
-  {
-    id: 1,
-    user: "John Doe",
-    avatar: "https://picsum.photos/200/300",
-    content: "Just had an amazing day! ☀️",
-    time: "2h ago",
-  },
-  {
-    id: 2,
-    user: "Jane Smith",
-    avatar: "https://picsum.photos/200/300",
-    content: "Working on a new project. Stay tuned! 💻",
-    time: "5h ago",
-  },
-];
+import { useState } from "react";
+import MenuSideBar from "../components/ui/MenuSidebar";
+import Navbar from "../components/ui/Navbar";
+import ProfileSidebar from "../components/ui/ProfileSidebar";
+import Notifications from "../components/ui/Notifications";
+import Messages from "../components/ui/Messages";
+import Premium from "../components/ui/Premium";
+import Settings from "../components/ui/Settings";
+import JobFeed from "../components/ui/JobFeeds";
+import BottomNavbar from "../components/ui/MenuBottomBar";
 
 const FeedsPage = () => {
-  return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
-      {/* Navbar */}
-      <nav className="bg-white dark:bg-gray-800 shadow p-4 flex justify-between">
-        <h1 className="text-xl font-bold text-gray-900 dark:text-white">Feeds</h1>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">Post</button>
-      </nav>
+  const [activeMenu, setActiveMenu] = useState("Home");
 
-      {/* Main Content */}
-      <div className="flex justify-center mt-4">
-        <div className="w-full max-w-lg bg-white dark:bg-gray-800 shadow-md rounded-lg p-4">
-          {posts.map((post) => (
-            <div key={post.id} className="border-b border-gray-300 dark:border-gray-700 py-4">
-              <div className="flex items-center gap-3">
-                <img src={post.avatar} alt={post.user} className="w-10 h-10 rounded-full" />
-                <div>
-                  <p className="font-semibold text-gray-900 dark:text-white">{post.user}</p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">{post.time}</p>
-                </div>
-              </div>
-              <p className="mt-2 text-gray-900 dark:text-gray-300">{post.content}</p>
-            </div>
-          ))}
+  const renderSidebarContent = () => {
+    switch (activeMenu) {
+      case "Home":
+        return <Notifications />;
+      case "FindJobs":
+        return <JobFeed />;
+      case "Notifications":
+        return <Notifications />;
+      case "Messages":
+        return <Messages />;
+      case "Premium":
+        return <Premium />;
+      case "Settings":
+        return <Settings />;
+      default:
+        return <ProfileSidebar />;
+    }
+  };
+
+  return (
+    <div className="h-screen flex flex-col">
+      <div className="hidden md:block">
+        <Navbar />
+      </div>
+
+      <div className="flex h-full">
+        {/* Sidebar */}
+        <div className="hidden md:block w-64 h-full p-4 fixed left-0 top-16">
+          <MenuSideBar setActiveMenu={setActiveMenu} activeMenu={activeMenu} />
         </div>
+
+        {/* Main Content */}
+        <div className="flex-1 md:ml-64 md:mt-14 p-6 overflow-auto">
+          {renderSidebarContent()}
+        </div>
+      </div>
+      <div className="md:hidden">
+        <BottomNavbar activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
       </div>
     </div>
   );
