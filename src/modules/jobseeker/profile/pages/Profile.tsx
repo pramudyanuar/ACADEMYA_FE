@@ -1,9 +1,9 @@
 import { useState } from "react";
-import AboutMeCard from "../components/common/AboutMeCard";
-import EducationCard from "../components/common/EducationCard";
-import ExperienceCard from "../components/common/ExperienceCard";
-import PortfolioCard from "../components/common/PortfolioCard";
-import ProfileCard from "../components/common/ProfileCard";
+import AboutMeCard from "../components/AboutMeCard";
+import EducationCard from "../components/EducationCard";
+import ExperienceCard from "../components/ExperienceCard";
+import PortfolioCard from "../components/PortfolioCard";
+import ProfileCard from "../components/ProfileCard";
 
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState("all");

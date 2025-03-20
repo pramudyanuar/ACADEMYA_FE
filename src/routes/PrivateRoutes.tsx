@@ -3,18 +3,31 @@ import { Navigate, Outlet } from "react-router-dom";
 import NavigationRoutes from "../routes/NavigationRoutes";
 import { toast } from "react-hot-toast";
 
-const PrivateRoute = () => {
-  const isAuthenticated = !!localStorage.getItem("token");
-  const hasShownToast = useRef(false); // Mencegah toast muncul dua kali
+interface PrivateRouteProps {
+  allowedRoles: string[];
+}
+
+const PrivateRoute = ({ allowedRoles }: PrivateRouteProps) => {
+  // const isAuthenticated = !!localStorage.getItem("token");
+  // const userRole = localStorage.getItem("role");
+  const isAuthenticated = true;
+  const userRole = "jobseeker";
+  const hasShownToast = useRef(false);
 
   useEffect(() => {
     if (!isAuthenticated && !hasShownToast.current) {
       toast.error("Silakan login terlebih dahulu!");
-      hasShownToast.current = true; // Set agar tidak muncul lagi
-    }
+      hasShownToast.current = true;
+    } 
   }, [isAuthenticated]);
 
-  return isAuthenticated ? <Outlet /> : <Navigate to={NavigationRoutes.LOGIN} />;
+  if (!isAuthenticated) return <Navigate to={NavigationRoutes.LOGIN} />;
+  if (!allowedRoles.includes(userRole || "")) {
+    toast.error("Akses ditolak! Anda tidak memiliki izin.");
+    return <Navigate to={NavigationRoutes.LOGIN} />;
+  }
+
+  return <Outlet />;
 };
 
 export default PrivateRoute;

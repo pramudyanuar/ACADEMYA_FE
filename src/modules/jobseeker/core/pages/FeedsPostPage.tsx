@@ -1,14 +1,14 @@
 import { useState } from "react";
-import MenuSideBar from "../components/ui/MenuSidebar";
-import Navbar from "../components/ui/Navbar";
-import Notifications from "./Notifications";
-import Messages from "./Messages";
-import Premium from "./Premium";
-import Settings from "./Settings";
-import JobFeed from "../components/ui/JobFeeds";
-import BottomNavbar from "../components/ui/MenuBottomBar";
-import HomePage from "./HomePage";
-import ProfilePage from "./Profile";
+import MenuSideBar from "../components/MenuSidebar";
+import Navbar from "../components/Navbar";
+import Notifications from "../../notifications/pages/Notifications";
+import Messages from "../../messages/pages/Messages";
+import Premium from "../../premium/pages/Premium";
+import Settings from "../../settings/pages/Settings";
+import JobFeed from "../../findjobs/components/JobFeeds";
+import BottomNavbar from "../components/MenuBottomBar";
+import HomePage from "../../homepage/pages/HomePage";
+import ProfilePage from "../../profile/pages/Profile";
 
 const FeedsPage = () => {
   const [activeMenu, setActiveMenu] = useState("Home");

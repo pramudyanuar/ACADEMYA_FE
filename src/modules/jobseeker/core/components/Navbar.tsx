@@ -1,6 +1,6 @@
 // Navbar.tsx
 
-import useNavbar from "../../hooks/useNavbar";
+import useNavbar from "../hooks/useNavbar";
 
 const Navbar = () => {
   const {

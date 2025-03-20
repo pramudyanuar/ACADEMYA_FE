@@ -1,4 +1,4 @@
-import useNavbar from "../../hooks/useNavbar";
+import useNavbar from "../../core/hooks/useNavbar";
 
 const JobFeed = () => {
 

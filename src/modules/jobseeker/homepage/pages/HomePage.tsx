@@ -1,5 +1,5 @@
-import FeedsPostPage from "../components/ui/PostPage";
-import ProfileSidebar from "../components/ui/ProfileSidebar";
+import FeedsPostPage from "../components/PostPage";
+import ProfileSidebar from "../../core/components/ProfileSidebar";
 
 const HomePage = () => {
   return (
