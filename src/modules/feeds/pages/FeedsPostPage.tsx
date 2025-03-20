@@ -1,13 +1,14 @@
 import { useState } from "react";
 import MenuSideBar from "../components/ui/MenuSidebar";
 import Navbar from "../components/ui/Navbar";
-import ProfileSidebar from "../components/ui/ProfileSidebar";
-import Notifications from "../components/ui/Notifications";
-import Messages from "../components/ui/Messages";
-import Premium from "../components/ui/Premium";
-import Settings from "../components/ui/Settings";
+import Notifications from "./Notifications";
+import Messages from "./Messages";
+import Premium from "./Premium";
+import Settings from "./Settings";
 import JobFeed from "../components/ui/JobFeeds";
 import BottomNavbar from "../components/ui/MenuBottomBar";
+import HomePage from "./HomePage";
+import ProfilePage from "./Profile";
 
 const FeedsPage = () => {
   const [activeMenu, setActiveMenu] = useState("Home");
@@ -15,7 +16,7 @@ const FeedsPage = () => {
   const renderSidebarContent = () => {
     switch (activeMenu) {
       case "Home":
-        return <Notifications />;
+        return <HomePage />;
       case "FindJobs":
         return <JobFeed />;
       case "Notifications":
@@ -27,7 +28,7 @@ const FeedsPage = () => {
       case "Settings":
         return <Settings />;
       default:
-        return <ProfileSidebar />;
+        return <ProfilePage />;
     }
   };
 
@@ -44,7 +45,7 @@ const FeedsPage = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 md:ml-64 md:mt-14 p-6 overflow-auto">
+        <div className="flex-1 md:ml-64 md:mt-14 mb-20 md:mb-0 p-6 overflow-auto">
           {renderSidebarContent()}
         </div>
       </div>
