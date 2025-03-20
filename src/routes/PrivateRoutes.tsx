@@ -1,5 +1,4 @@
-import { useEffect, useRef } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { useParams, Navigate, Outlet } from "react-router-dom";
 import NavigationRoutes from "../routes/NavigationRoutes";
 import { toast } from "react-hot-toast";
 
@@ -8,21 +7,20 @@ interface PrivateRouteProps {
 }
 
 const PrivateRoute = ({ allowedRoles }: PrivateRouteProps) => {
-  // const isAuthenticated = !!localStorage.getItem("token");
-  // const userRole = localStorage.getItem("role");
+  const { role } = useParams();
   const isAuthenticated = true;
   const userRole = "jobseeker";
-  const hasShownToast = useRef(false);
 
-  useEffect(() => {
-    if (!isAuthenticated && !hasShownToast.current) {
-      toast.error("Silakan login terlebih dahulu!");
-      hasShownToast.current = true;
-    } 
-  }, [isAuthenticated]);
+  console.log("User Role:", userRole);
+  console.log("URL Role:", role);
 
-  if (!isAuthenticated) return <Navigate to={NavigationRoutes.LOGIN} />;
-  if (!allowedRoles.includes(userRole || "")) {
+  if (!isAuthenticated) {
+    toast.error("Silakan login terlebih dahulu!");
+    return <Navigate to={NavigationRoutes.LOGIN} />;
+  }
+
+  // Cek apakah role di URL cocok dengan role user yang login
+  if (!allowedRoles.includes(userRole) || userRole !== role) {
     toast.error("Akses ditolak! Anda tidak memiliki izin.");
     return <Navigate to={NavigationRoutes.LOGIN} />;
   }

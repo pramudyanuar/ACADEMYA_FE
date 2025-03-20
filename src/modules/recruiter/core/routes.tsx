@@ -3,14 +3,14 @@ import PrivateRoute from "../../../routes/PrivateRoutes";
 import NavigationRoutes from "../../../routes/NavigationRoutes";
 import DashboardHandler from "../../core/utils/DashboardHandler";
 
-const jobseekerRoutes: RouteObject[] = [
+const recruiterRoutes: RouteObject[] = [
   {
     path: NavigationRoutes.DASHBOARD,
-    element: <PrivateRoute allowedRoles={["jobseeker"]} />,
+    element: <PrivateRoute allowedRoles={["recruiter"]} />,
     children: [
       { path: "", element: <DashboardHandler /> },
     ],
   },
 ];
 
-export default jobseekerRoutes;
+export default recruiterRoutes;
